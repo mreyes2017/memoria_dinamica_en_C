@@ -2,27 +2,38 @@
 #include<cs50.h>
 #include<stdlib.h>
 
-int main()
+int main(void)
 {
 
-int n;//variable para especificar cuanta memoria vamos a reservar
+    //variable para especificar cuanta memoria vamos a reservar
+    int n;
 
-char *puntcadena;//puntero en el cual reservaremos la memoria
+    //puntero en el cual reservaremos la memoria
+    char *puntcadena;
 
-printf("Ingrese el numero de caracteres de la cadena: ");
-n=get_int();
-puntcadena=(char*)malloc(n*sizeof(char));//pedimos memoria (malloc) y reservamos el espacio(sizeof)
+    printf("Ingrese el numero de caracteres de la cadena: ");
 
-printf("\nSe ha reservado espacio de memoria para %d caracteres", n);
+    n = get_int("");
 
-printf("\nIngrese la cadena:");
-puntcadena=get_string();
+    //pedimos memoria (malloc) y reservamos el espacio(sizeof)
+    puntcadena = (char *)malloc(n * sizeof(char));
+
+    printf("\nSe ha reservado espacio de memoria para %d caracteres", n);
+
+    printf("\nIngrese la cadena:");
 
 
-printf("El valor almacenado en la variable de la cadena es: %s\n", puntcadena);//imprimimos lo que almacenamos
+    puntcadena = get_string("");
 
-printf("La direccion de memoria de la cadena es: %p\n", puntcadena);//imprimimos la direccion de memoria
+    //imprimimos lo que almacenamos
+    printf("El valor almacenado en la variable de la cadena es: %s\n", puntcadena);
 
-free(puntcadena);//liberamos la memoria
-return 0;
+    //imprimimos la direccion de memoria
+    printf("La direccion de memoria de la cadena es: %p\n", puntcadena);
+
+    //liberamos la memoria
+    free(puntcadena);
+
+    return 0;
+
 }

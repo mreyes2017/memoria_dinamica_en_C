@@ -1,37 +1,61 @@
 #include<stdio.h>
 #include<cs50.h>
 #include<stdlib.h>
-int contador=0;
-int restaS(int a,int b)
-{
-    if( a==0 || a<b )//casos bases (si el dividendo<divisor o si el residuo=0)
-    {
-        return 0;//es como el break en la funcion(ojo en este caso,en el main significa que el programa termino bien)
-    }else
-    {
 
-        int s = restaS( a-b , b );//caso recursivo
-        contador ++;//cuenta las restas sucesivas(osea el residuo)
-        return s;//por estetica lo puse en una variable el caso recursivo y por eso lo retorno
+int contador = 0;
+
+//Programa que te indica la cantidad de pasos de una resta sucesiva
+
+int restaS(int a, int b)
+{
+    //casos bases (si el dividendo<divisor o si el residuo=0)
+    if (a == 0 || a < b)
+    {
+        //es como el break en la funcion(ojo en este caso, en el main significa que el programa termino bien)
+        return 0;
+    }
+    else
+    {
+        //caso recursivo
+        int s = restaS(a - b, b);
+
+        //cuenta las restas sucesivas(osea el residuo)
+        contador ++;
+
+        //por estetica lo puse en una variable el caso recursivo y por eso lo retorno
+        return s;
     }
 }
 
-int main ( int argc , string argv[] )
+int main(int argc, string argv[])
 {
-    if ( argc < 3 )//validar la entrada de argumentos,parametros como lo quieran llamar :v
+    //validar la entrada de argumentos,parametros como lo quieran llamar :v
+    if (argc < 3)
     {
-        return 1;//el programa termino mal
-    }else
+        printf("Modo de uso ./restaS num1 num2 \n");
+        //el programa termino mal
+        return 1;
+    }
+    else
     {
-       int n=atoi( argv[1] );//variable que recibe el argumento en el indice 1 y lo convierte a entero
-       int n1=atoi( argv[2] );//variable que recibe el argumento en el indice 2 y lo convierte a entero
-       restaS( n , n1 );//llamado de la funcion con nuestras variables locales
-       printf("%d\n",contador);//imprimimos la respuesta(pongo el contador por que conto cuantas restas sucesivas hubieron que es equivalente al cociente)
-       //si lo pueden hacer mejor me lo pasan
-       //jajaja, ok no
-       //Happy Coding
+        //variable que recibe el argumento en el indice 1 y lo convierte a entero
+        int n = atoi(argv[1]);
+
+        //variable que recibe el argumento en el indice 2 y lo convierte a entero
+        int n1 = atoi(argv[2]);
+
+        //llamado de la funcion con nuestras variables locales
+        restaS(n, n1);
+
+        //imprimimos la respuesta(pongo el contador por que conto cuantas restas sucesivas hubieron que es equivalente al cociente)
+        printf("%d\n", contador);
+
+
+        //si lo pueden hacer mejor me lo pasan
+        //jajaja, ok no
+        //Happy Coding
     }
 
-
+    return 0;
 
 }
